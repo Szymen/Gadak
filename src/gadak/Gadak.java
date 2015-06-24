@@ -14,26 +14,16 @@ public class Gadak {
      */
     public static void main(String[] args) {
         
-        SlownikPrzejsc sp = new SlownikPrzejsc(3,"/home/szymon/NetBeansProjects/Gadak/src/gadak/alamakota.txt");
+        SlownikPrzejsc sp = new SlownikPrzejsc(3,"/home/szymon/NetBeansProjects/Gadak/src/gadak/Iliada.txt");
         Scanner konsola = new Scanner (System.in);
-        System.out.println("PISZ!");
+
         String uzytkownik;
-       //sp.sprawdz();
-                 System.out.println(new Klucz(2));
-        for (int i = 0 ; i < 10 ; i++){
+        for (int i = 0 ; i < 10 ; i++){        System.out.println("PISZ!");
             uzytkownik = konsola.nextLine();
-            //sp.Aktualizuj(uzytkownik);
-            System.out.println("Lul : "+sp.GenerujTekst(10, sp.getNgram(uzytkownik, 3)));
+            System.out.println("Odpowiedz: "+sp.Odpowiedz(uzytkownik));
         }
         
-        /* Klucz cos = new Klucz (2);
-        cos.Add("a");
-        cos.Add("a");
-        System.out.println(cos.toString().hashCode());
-        System.out.println(cos.toString().hashCode());
-        System.out.println(cos);
-        System.out.println(cos.toString());*/
-        
+
         
     }
     

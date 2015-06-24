@@ -20,6 +20,7 @@ public class SlownikPrzejsc {
     private final HashMap< String , ArrayList < String > > Przejscia = new HashMap<  >();
     private Klucz pierwszy ;
     private final int grams ;
+    private final Random rand = new Random();
     
     public SlownikPrzejsc(int grams, String nazwaPliku){
         this.grams = grams;
@@ -37,7 +38,7 @@ public class SlownikPrzejsc {
 
         while (line != null) {
             sb.append(line);
-            sb.append(System.lineSeparator());
+            sb.append(" ");
             line = br.readLine();
         }
         everything = sb.toString();
@@ -60,7 +61,7 @@ public class SlownikPrzejsc {
      
      
     }
-    public void Aktualizuj(String tekst){
+    private void Aktualizuj(String tekst){
         String[] podzielone  = tekst.split(" ");
         Klucz roboczy = new Klucz(this.grams);
         for(String s : podzielone){
@@ -72,9 +73,9 @@ public class SlownikPrzejsc {
         }
     
     }
-    public String GenerujTekst(int docelowe, Klucz poczatek){
+    private String GenerujTekst(int docelowe, Klucz poczatek){
          Klucz roboczy = poczatek;
-         System.out.println("W generowaniu : "+roboczy);
+
          int dlugosc = 0;
          Random rm = new Random();
          int wylosowany_indeks = 0;
@@ -82,22 +83,18 @@ public class SlownikPrzejsc {
          String wynik = new String();
          
          while(dlugosc < docelowe){
-            if(Przejscia.containsKey(roboczy.toString())){
+
                 if (Przejscia.get(roboczy.toString()) == null){wynik += "..."; break;}
                 wylosowany_indeks = rm.nextInt(Przejscia.get(roboczy.toString()).size());
                 wylosowane_slowo =  Przejscia.get(roboczy.toString()).get(wylosowany_indeks);
                 wynik+= wylosowane_slowo + " ";
                 roboczy.Add(wylosowane_slowo);
                 dlugosc ++;
-                }
-            //System.out.println(Przejscia.get(roboczy.toString()));
-            //System.out.println("Ilosc nastepnikow :"+Przejscia.get(roboczy.toString()).size()); 
-            
          }         
          return wynik;
 
      }
-    public Klucz getNgram(String text, int gram){  
+    private Klucz getNgram(String text, int gram){  
        String[] podzielony = text.split(" ");
        Klucz wynik = new Klucz (gram);
               if (podzielony.length < gram ){return wynik;}
@@ -109,12 +106,17 @@ public class SlownikPrzejsc {
     }
     public void sprawdz(){
         for (String s : Przejscia.keySet()){
-            System.out.print(s + " : ");
+            System.out.print("->"+s+"<-" + " : ");
             for(String x : Przejscia.get(s)){
                 System.out.print(x+" ");
             }
             System.out.println();
+            System.out.println();
         }
     }
-    
+    public String Odpowiedz(String wiadomosc){
+        Aktualizuj(wiadomosc);
+        int dlugosc_tekstu = wiadomosc.split(" ").length;
+        return GenerujTekst(dlugosc_tekstu,getNgram(wiadomosc,grams));
+    }
 }
