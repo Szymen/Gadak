@@ -12,7 +12,17 @@ public class Gadak extends javax.swing.JFrame {
     private final int GRAMS = 3;
     private final String NazwaPliku = "src/gadak/Iliada.txt";
     
-    private SlownikPrzejsc sp ;
+    private SlownikPrzejsc sp = new SlownikPrzejsc(GRAMS, NazwaPliku);
+    
+    private void wczytaj(){
+        System.out.println("Wczytaj!");
+        try {
+            sp = new SlownikPrzejsc(GRAMS, wejscie_slownik.getText());
+        }
+        catch(Exception e){
+            //System.out.println("Nie dziala wczytanie!");
+        }
+    }
     
     private void czatuj(){
         wyswietlacz.append("Ty: "+wejscie.getText()+"\n");
@@ -79,6 +89,11 @@ public class Gadak extends javax.swing.JFrame {
         label1.setText("Plik żródłowy");
 
         wejscie_slownik.setText("Plik źródłowy");
+        wejscie_slownik.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                wejscie_slownikKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -108,11 +123,10 @@ public class Gadak extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(przycisk_wczytaj)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(4, 4, 4)
-                            .addComponent(wejscie_slownik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(wejscie_slownik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(przycisk_wczytaj))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -146,9 +160,15 @@ public class Gadak extends javax.swing.JFrame {
     }//GEN-LAST:event_wejscieKeyPressed
 
     private void przycisk_wczytajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_przycisk_wczytajActionPerformed
-        System.out.println(wejscie_slownik.getText());
-        sp = new SlownikPrzejsc(GRAMS, wejscie_slownik.getText());
+        wczytaj();
     }//GEN-LAST:event_przycisk_wczytajActionPerformed
+
+    private void wejscie_slownikKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_wejscie_slownikKeyPressed
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            wczytaj();
+        }
+        
+    }//GEN-LAST:event_wejscie_slownikKeyPressed
 
     /**
      * @param args the command line arguments

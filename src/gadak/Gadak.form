@@ -73,13 +73,11 @@
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="label1" alignment="0" min="-2" pref="36" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="przycisk_wczytaj" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="3" attributes="0">
-                              <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                              <Component id="wejscie_slownik" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
+                          <Component id="wejscie_slownik" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="przycisk_wczytaj" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" pref="180" max="32767" attributes="0"/>
@@ -143,6 +141,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Plik &#x17a;r&#xf3;d&#x142;owy"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="wejscie_slownikKeyPressed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
