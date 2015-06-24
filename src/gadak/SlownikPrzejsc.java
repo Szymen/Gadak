@@ -61,7 +61,7 @@ public class SlownikPrzejsc {
      
      
     }
-    private void Aktualizuj(String tekst){
+    public void Aktualizuj(String tekst){
         String[] podzielone  = tekst.split(" ");
         Klucz roboczy = new Klucz(this.grams);
         for(String s : podzielone){
